@@ -1,5 +1,6 @@
 load('iIT341_modified.mat')
 model2=iIT341;
+%% add the following reactions to the iIT341 model
 rxns_new={'cys__L[c] + h2o[c] -> h2s[c] + nh4[c] + pyr[c]'
 'acser[c] + trdrd[c] + tsul[c] <=> ac[c] + cys__L[c] + h[c] + so3[c] + trdox[c]'
 'dhor__S[c] + o2[c] -> h2o2[c] + orot[c]'
