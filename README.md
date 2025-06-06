@@ -9,3 +9,5 @@ Codes used to build host-pathogen interaction models based on Recon 3D and Dual 
 
 2. Infected host model
      Following steps were taken to build the infected host models.
+   ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
