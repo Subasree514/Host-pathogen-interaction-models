@@ -1,15 +1,17 @@
 %% remove TICs from the SP model
 load('SPD39_host.mat')
+%% check for any duplicate reactions
 [SPD39_host, removedRxnInd2, keptRxnInd2] = checkDuplicateRxn(SPD39_host,'FR');
 [SPD39_host, removedRxnInd2, keptRxnInd2] = checkDuplicateRxn(SPD39_host,'S');
 fba=optimizeCbModel(SPD39_host)
+%% find TICs in the model
 [rxnInLoopfinal, Nfinal, loopInfofinal] = findMinNull(SPD39_host);
 find(rxnInLoopfinal(:,1)==1);
 backward1a=SPD39_host.rxns(ans);
 find(rxnInLoopfinal(:,2)==1);
 forward1a=SPD39_host.rxns(ans);
 both1a=intersect(forward1a,backward1a);
-%%
+%% Identify and modify the reaction bounds to remove TICs
 block={'GLUDy'
 'KARI'
 'KARI_3hmoa'
