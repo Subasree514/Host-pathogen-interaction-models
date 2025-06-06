@@ -16,7 +16,8 @@ SPD39_host.lb(ans)=0;
 SPD39_host.rxns(exids(3:length(exids)))
 findRxnIDs(SPD39_host,ans);
 SPD39_host.ub(ans)=1000;
-%%
+
+%% add constraints to the following metabolites to mimic lunglike media consumption
 lunglike={'EXacgam'
 'EXalal'
 'EXargl'

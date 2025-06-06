@@ -1,18 +1,8 @@
-%%
-%load('Streptococcus pneumoniae D39.mat');
-%commonrsmets_sp={'cu2[c]';'fe2[c]';'fe3[c]';'gthrd[c]';'h2o2[c]';'h2o2[e]';'h2s[c]';'mthgxl[c]';'no3[c]';'so3[c]';'so4[c]';'trdox[c]';'trdrd[c]'};
-%rsrxns1=findRxnsFromMets(model,{'o2s[c]','o2s[e]','h2o2[c]','h2o2[e]','no[c]','no[e]','gthox[c]','gthox[e]','gthrd[c]','gthrd[e]','h2s[c]','h2s[e]','no2[c]','no3[c]'});
-%rsrxns2=findRxnsFromMets(model,commonrsmets_sp);
-%%
-%load('Streptococcus_pneumoniae_G54.mat')
-%commonrsmets_sp={'cu2[c]';'fe2[c]';'fe3[c]';'gthrd[c]';'h2o2[c]';'h2o2[e]';'h2s[c]';'mthgxl[c]';'no3[c]';'so3[c]';'so4[c]';'trdox[c]';'trdrd[c]'};
-%rsrxns3=findRxnsFromMets(model,{'o2s[c]','o2s[e]','h2o2[c]','h2o2[e]','no[c]','no[e]','gthox[c]','gthox[e]','gthrd[c]','gthrd[e]','h2s[c]','h2s[e]','no2[c]','no3[c]'});
-%rsrxns4=findRxnsFromMets(model,commonrsmets_sp);
-%%
 clear
 load('SPD39_modified.mat')
 model2=SPD39;
-dmem_tr={'achms[c] + trdrd[c] + tsul[c] <=> ac[c] + h[c] + hcys-L[c] + so3[c] + trdox[c] '
+%% add additional reactions to the model
+rxns_new={'achms[c] + trdrd[c] + tsul[c] <=> ac[c] + h[c] + hcys-L[c] + so3[c] + trdox[c] '
 'cys-L[c] + h2o[c] -> h2s[c] + nh4[c] + pyr[c]'
 'acser[c] + trdrd[c] + tsul[c] <=> ac[c] + cys-L[c] + h[c] + so3[c] + trdox[c] '
 '2 fe2[c] + h[c] + nad[c] <=> 2 fe3[c] + nadh[c] '
@@ -42,7 +32,7 @@ rxnNamesnew={'AHSERL3'
 'SPODM'
 'THIORDXi'
 'TSULST'};
-dmemsubsytem={'Methionine and cysteine metabolism'
+rxns_newsubsytem={'Methionine and cysteine metabolism'
 'Methionine and cysteine metabolism'
 'Methionine and cysteine metabolism'
 'Transport, extracellular'
@@ -58,14 +48,16 @@ dmemsubsytem={'Methionine and cysteine metabolism'
 'ROS detoxification'
 'Sulfur metabolism'};
 for i = 1:length(rxnNamesnew)
-model2 = addReaction(model2,rxnNamesnew{i,1},'reactionFormula',dmem_tr{i,1},'subSystem',dmemsubsytem{1,1});
+model2 = addReaction(model2,rxnNamesnew{i,1},'reactionFormula',rxns_new{i,1},'subSystem',rxns_newsubsytem{i,1});
 end
-%%
+
+%% add transport reactions to the following metabolites 
 model2 = addReaction(model2,'no2_tr','reactionFormula','no2[e] <=> no2[c]');
 model2 = addReaction(model2,'lac-D_tr','reactionFormula','lac-D[e] <=> lac-D[c]');
 model2 = addReaction(model2,'o2s_tr','reactionFormula','o2s[e] <=> o2s[c]');
+
+%% add exchange to the superoxide reaction
 model2=addExchangeRxn(model2,{'o2s[e]'});
-%%
 rsexchanges={'EX_o2s[e]'};
 rsids=findRxnIDs(model2,rsexchanges);
 model2.lb(rsids)=-1000;
