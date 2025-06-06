@@ -8,6 +8,6 @@ Codes used to build host-pathogen interaction models based on Recon 3D and Dual 
    Two pathogen genome-scale metabolic models were used in this project. They are _Streptococcus pneumoniae_ D39 and _Helicobacter pylori_. The models were taken from the following sources. These models were further modified byadd a few additional reactions and removing thermodynamically infeasible cycles. Further the nomenclature of the metabolites were changed according to the nomenclature of the Rexon 3D derived host GEMs. These models were constrained using the lunglike media for _Streptococcus pneumoniae_ D39 and a minimal media for _Helicobacter pylori_ to support their growth respectively. The nutrient media were taken from the sources of their respective GEMs.
 
 2. Infected host model
-     Following steps were taken to build the infected host models from the CCLE cancer cell line GEMs as both the dual RNA seq experiments were done on the cell lines
+     Following steps were taken to build the infected host models from the CCLE cancer cell line GEMs as both the dual RNA seq experiments were done on the cell lines. The detailed methodology common to both the scenarious is shown in the figure below.
    ![image-url](https://github.com/Subasree514/Host-pathogen-interaction-models/blob/main/hp.png)
 
