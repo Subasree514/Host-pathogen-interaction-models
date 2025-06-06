@@ -10,4 +10,5 @@ Codes used to build host-pathogen interaction models based on Recon 3D and Dual 
 2. Infected host model
      Following steps were taken to build the infected host models from the CCLE cancer cell line GEMs as both the dual RNA seq experiments were done on the cell lines. The detailed methodology common to both the scenarious is shown in the figure below.
    ![image-url](https://github.com/Subasree514/Host-pathogen-interaction-models/blob/main/hp.png)
-
+3. HP model building
+      Codes used to reconstruct the host-pathogen interaction models for pneumonia and gastric cancer.
