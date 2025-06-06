@@ -10,12 +10,21 @@ Codes used to build host-pathogen interaction models based on Recon 3D and Dual 
    2. Thiele, Ines, et al. "Expanded metabolic reconstruction of helicobacter pylori (i it341 gsm/gpr): an in silico             genome-scale characterization of single-and double-deletion mutants." Journal of bacteriology 187.16 (2005): 5818-         5830.
 
    These models were further modified by adding a few additional reactions and removing thermodynamically infeasible cycles. Further the nomenclature of the metabolites were changed according to the nomenclature of the Rexon 3D derived host GEMs. These models were constrained using the lunglike media for _Streptococcus pneumoniae_ D39 and a minimal media for _Helicobacter pylori_ to support their growth respectively. The nutrient media were taken from the sources of their respective GEMs.
-For the _H.pylori_ GEM: ...Pathogen GEMs/H pylori/Model
+   
+For the _H.pylori_ GEM: ...Host-pathogen-interaction-models/Pathogen GEMs/H pylori/Model
 hp_model_modifications.m - Update the reaction bounds and nomenclature
 iit341_newrxns.m - Add a few additional reactions
-iit341_changes.m - Remove TICs and update the nomenclature
 
-For the _S.pneumoniae_ model: ...
+...Host-pathogen-interaction-models/Pathogen GEMs/H pylori/TICs removal/iit341_changes.m 
+- Remove TICs and update the nomenclature
+
+For the _S.pneumoniae_ model: ...Host-pathogen-interaction-models/Pathogen GEMs/S pneumoniae/Model
+SPD39_newrxns - Add a few additional reactions
+sp_lunglikemedia.m - Update the constraints of the lunglike media
+SPmetsmod.m - Update the nomenclature
+
+......Host-pathogen-interaction-models/Pathogen GEMs/S pneumoniae/TICs removal/sp_removetics.m
+-Remove TICs
 3. Infected host model
      Following steps were taken to build the infected host models from the CCLE cancer cell line GEMs as both the dual RNA seq experiments were done on the cell lines. The detailed methodology common to both the scenarious is shown in the figure below.
    ![image-url](https://github.com/Subasree514/Host-pathogen-interaction-models/blob/main/hp.png)
