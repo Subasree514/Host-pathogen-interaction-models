@@ -19,8 +19,8 @@ iit341_newrxns.m - Add a few additional reactions
 - Remove TICs and update the nomenclature
 
 For the _S.pneumoniae_ model: ...Host-pathogen-interaction-models/Pathogen GEMs/S pneumoniae/Model
-SPD39_newrxns - Add a few additional reactions< br / >
-sp_lunglikemedia.m - Update the constraints of the lunglike media< br / >
+SPD39_newrxns - Add a few additional reactions < br / >
+sp_lunglikemedia.m - Update the constraints of the lunglike media < br / >
 SPmetsmod.m - Update the nomenclature
 
 ......Host-pathogen-interaction-models/Pathogen GEMs/S pneumoniae/TICs removal/sp_removetics.m
