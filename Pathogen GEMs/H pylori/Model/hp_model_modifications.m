@@ -1,31 +1,14 @@
+%% download the model from https://doi.org/10.1093/femspd/ftaa051
 load('iIT341.mat')
-%%
-lb_rxns={'EX_pime_e'
-'EX_pheme_e'
-'EX_his__L_e'
-'EX_ile__L_e'
-'EX_leu__L_e'
-'EX_met__L_e'
-'EX_thm_e'
-'EX_val__L_e'
-'EX_ala__D_e'
-'EX_ala__L_e'
-'EX_arg__L_e'
-'EX_o2_e'};
-ub_rxns={'EX_o2_e'
-'FMNRx2'
-'KARA1'};
-lb_rxns_id=findRxnIDs(iIT341,lb_rxns);
-ub_rxns_id=findRxnIDs(iIT341,ub_rxns);
+%% update the bounds of the reactions to -1000 to 1000
 find(iIT341.lb<-100)
 iIT341.lb(ans)=-1000;
 %%
 find(iIT341.ub>100)
 iIT341.ub(ans)=1000;
-iIT341.ub(ub_rxns_id)=0;
 %%
 FBA=optimizeCbModel(iIT341);
-%%
+%% update the nomenclature of the metabolites as below
 iIT341.mets={'atp[c]'
 'pi[c]'
 'malcoa[c]'
