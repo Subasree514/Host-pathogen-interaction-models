@@ -15,7 +15,7 @@ For the _H.pylori_ GEM: ...Host-pathogen-interaction-models/Pathogen GEMs/H pylo
 hp_model_modifications.m - Update the reaction bounds and nomenclature <br>
 iit341_newrxns.m - Add a few additional reactions
 
-...Host-pathogen-interaction-models/Pathogen GEMs/H pylori/TICs removal/iit341_changes.m
+...Host-pathogen-interaction-models/Pathogen GEMs/H pylori/TICs removal/iit341_changes.m <br>
 - Remove TICs and update the nomenclature
 
 For the _S.pneumoniae_ model: ...Host-pathogen-interaction-models/Pathogen GEMs/S pneumoniae/Model
@@ -23,7 +23,7 @@ SPD39_newrxns - Add a few additional reactions <br>
 sp_lunglikemedia.m - Update the constraints of the lunglike media <br>
 SPmetsmod.m - Update the nomenclature
 
-......Host-pathogen-interaction-models/Pathogen GEMs/S pneumoniae/TICs removal/sp_removetics.m
+......Host-pathogen-interaction-models/Pathogen GEMs/S pneumoniae/TICs removal/sp_removetics.m <br>
 -Remove TICs
 
 3. Infected host model
