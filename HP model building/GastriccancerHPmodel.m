@@ -1,4 +1,4 @@
-% RS integrated host model
+% RS integrated host model. The same procedure applies to the other infection points host tissue models
 load('model_hp6_rs.mat')
 model1=model_hp6_rs;
 model1 = addExchangeRxn(model1,{'no[e]'
@@ -37,33 +37,20 @@ for i = 1:15
 model1 = addReaction(model1,rxnNamesnew{i,1},'reactionFormula',mem_tr{i,1},'subSystem',memsubsytem{1,1});
 end
 model2=model1;
+%% remove duplicate reactions
 [model1, removedRxnInd1, keptRxnInd1] = checkDuplicateRxn(model1,'S');
 [model1, removedRxnInd2, keptRxnInd2] = checkDuplicateRxn(model1,'FR');
-blockexchanges={'EX_no[e]'
-'EX_lac_L[e]'
-'EX_adn[e]'
-'EX_k[e]'
-'EX_Lkynr[e]'
-'EX_for[e]'
-'EX_succ[e]'
-'EX_gthrd[e]'
-'EX_urate[e]'
-'EX_etoh[e]'
-'EX_ac[e]'
-'EX_o2s[e]'
-'EX_caro[e]'
-'EX_ascb_L[e]'
-'EX_avite1[e]'};
-findRxnIDs(model1,blockexchanges);
-model1.lb(ans)=0;
-load('iIT341_rsmin.mat')
-%%
+
+%% update exchanges of original host model
 rxnlist=contains(model1.rxns,'EX_');
 find(rxnlist==1);
 model1.lb(ans)=-1000;
 modelHost=model1;
-%%
-%%
+
+%% load the RS integrated pathogen
+load('iIT341_rsmin.mat')
+
+%% default methodology to integrate th host and pathogen models
 models={};
 nameTagsModels={};
 models{1,1}=iIT341_rsmin;
@@ -73,18 +60,16 @@ nameTagsModels{1,1}=strcat('HP_');
 nameTagHost='Gastric_';
 %reducedDietConstraints={};
 [modelJoint] = createMultipleSpeciesModel(models,'nameTagsModels',nameTagsModels,'modelHost',modelHost,'nameTagHost',nameTagHost);
-rxnlist=contains(modelJoint.rxns,'HP_IEX_');
-find(rxnlist==1);
-modelJoint.lb(ans)=-1000;
-%%
-%modelJoint = changeRxnBounds(modelJoint,modelJoint.rxns(strmatch('HP_IEX_',modelJoint.rxns)),0,'l');
-%modelJoint = changeRxnBounds(modelJoint,modelJoint.rxns(strmatch('HP_IEX_',modelJoint.rxns)),1000,'u');
-%%
-modelJoint = changeRxnBounds(modelJoint,modelJoint.rxns(strmatch('Gastric_EX_',modelJoint.rxns)),0,'l');
-modelJoint=changeRxnBounds(modelJoint,'Gastric_EX_o2[e]b',-2,'l');
+
+%% set the bounds of boundary reactions in the common compartment for the host
+modelJoint = changeRxnBounds(modelJoint,modelJoint.rxns(strmatch('Gastric_IEX',modelJoint.rxns)),0,'l');
 modelJoint = changeRxnBounds(modelJoint,modelJoint.rxns(strmatch('Gastric_IEX',modelJoint.rxns)),1000,'u');
-%%
-sp_IEX_exchanges={'HP_IEX_ala_D[u]tr'
+
+%% Nutreint uptake for the host and pathogen
+%% constrain the uptake reactions as minimal media for the pathogen
+modelJoint = changeRxnBounds(modelJoint,modelJoint.rxns(strmatch('HP_IEX_',modelJoint.rxns)),0,'l');
+modelJoint = changeRxnBounds(modelJoint,modelJoint.rxns(strmatch('HP_IEX_',modelJoint.rxns)),1000,'u');
+HP_IEX_exchanges={'HP_IEX_ala_D[u]tr'
 'HP_IEX_ala_L[u]tr'
 'HP_IEX_arg_L[u]tr'
 'HP_IEX_his_L[u]tr'
@@ -102,7 +87,7 @@ sp_IEX_exchanges={'HP_IEX_ala_D[u]tr'
 'HP_IEX_pime[u]tr'
 'HP_IEX_glc_D[u]tr'
 'HP_IEX_o2[u]tr'};
-SP_IEX_exchanges_lb=[-1
+HP_IEX_exchanges_lb=[-1
 -1
 -1
 -1
@@ -120,13 +105,12 @@ SP_IEX_exchanges_lb=[-1
 -1
 -1
 -0.001];
-spids=findRxnIDs(modelJoint,sp_IEX_exchanges);
-modelJoint.lb(spids)=1*SP_IEX_exchanges_lb;
-%%
-%ids=findRxnIDs(modelJoint,'SP_RS_139');
-%modelJoint.lb(ids)=0;
-%%
-lunglikeexchanges={'Gastric_EX_arg_L[e]b'
+hpids=findRxnIDs(modelJoint,HP_IEX_exchanges);
+modelJoint.lb(hpids)=1*HP_IEX_exchanges_lb;
+
+%% set the uptake of nutrients from blood as minimal media metabolites
+modelJoint = changeRxnBounds(modelJoint,modelJoint.rxns(strmatch('Gastric_EX_',modelJoint.rxns)),0,'l');
+bloodexchanges={'Gastric_EX_arg_L[e]b'
 'Gastric_EX_Lcystin[e]b'
 'Gastric_EX_his_L[e]b'
 'Gastric_EX_ile_L[e]b'
@@ -151,12 +135,12 @@ lunglikeexchanges={'Gastric_EX_arg_L[e]b'
 'Gastric_EX_mg2[e]b'
 'Gastric_EX_k[e]b'
 'Gastric_EX_hco3[e]b'
-'Gastric_EX_na1[e]b'
 'Gastric_EX_pi[e]b'
 'Gastric_EX_glc_D[e]b'
 'Gastric_EX_o2[e]b'
 'Gastric_EX_cl[e]b'
-'Gastric_EX_so4[e]b'};
+'Gastric_EX_so4[e]b'
+'Gastric_EX_na1[e]b'};
 bloodbounds=[0.007854014
 0.00403395
 0.004072988
@@ -188,7 +172,7 @@ bloodbounds=[0.007854014
 0.981506585
 0.006424926
 1.139885955];
-bloodids=findRxnIDs(modelJoint,lunglikeexchanges);
+bloodids=findRxnIDs(modelJoint,bloodexchanges);
 modelJoint.lb(bloodids)=-1*bloodbounds;
 optimizeCbModel(modelJoint,'max')
 %%

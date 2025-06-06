@@ -1,6 +1,9 @@
+%% transcriptomic data in TPM from gastric cancer infected MKN-28 and pneumonia infected A549 cell line 
 load('SPlung.mat')
 load('HPcolon.mat')
+%% modified Recon 3D model
 load('model_final.mat')
+%% 
 hpcolongenes={'254173.1'
 '126792.1'
 '118424.1'
@@ -7330,3 +7333,4 @@ splunggenes={'254173.1'
 '4541.1'
 '4519.1'
 '5625.1'};
+%%

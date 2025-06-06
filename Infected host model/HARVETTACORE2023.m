@@ -1,3 +1,4 @@
+%% core reactions for different organs like colon and lungs, selected from the Harvey and Harvetta models. These core reactions were made sure to be present in the gastric cell line and lung cell line 
 COLON_core={'12DHCHOLabc'
 '12DHCHOLt'
 '12DHCHOLt2'

@@ -1,4 +1,4 @@
-%% mem
+%% mem media nutrients
 memmets={'arg_L[e]'
 'Lcystin[e]'
 'his_L[e]'
