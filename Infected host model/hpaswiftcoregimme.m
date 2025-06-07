@@ -1,6 +1,7 @@
-run modifymodels.m
-run hpinfo.m;
-run HARVETTACORE2023.m
+%% load the transcriptomic data of the infected tissues
+run trancriptomics_data_integration.m;
+%% core reactions important for lungs and gastric cells
+run organs_core_reactions.m
 %% pneumonia GEM reconstruction
 %% map the expression data only to the genes present in the lung cell line models
 mpi1=SPlung;
@@ -17,6 +18,7 @@ lowerThs = prctile(lungdata(hpaincludeids,:),30,'all');
 expressionData1.gene=splunggenes(hpaincludeids,:);
 expressionData1.value=lungdata(hpaincludeids,:);
 expressionRxns1=mapExpressionToReactions(modelA549final,expressionData1,'minSum');
+%% important core reactions
 rxns_add={'DATPtn'
 'DGTPtn'
 'DTTPtn'
@@ -29,7 +31,7 @@ corem1=findRxnIDs(modelA549final,rxns_add);
 expressionRxns1(corem1)=5;
 tissueModel_sp_0 = GIMME(modelA549final, expressionRxns1,lowerThs);
 model3=tissueModel_sp_0;
-memhuman
+minimalmedianutrient.m
 tissueModel_sp_0=model3;
 save('tissueModel_sp_0','tissueModel_sp_0');
 %% gastric cancer GEM reconstruction
@@ -52,6 +54,6 @@ corem1=findRxnIDs(modelHK74final,rxns_add);
 expressionRxns2(corem1)=5;
 tissueModel_hp_0 = GIMME(modelHK74final, expressionRxns2, lowerThs2);
 model3=tissueModel_hp_0;
-memhuman
+minimalmedianutrient.m
 tissueModel_hp_0=model3;
 save('tissueModel_hp_0','tissueModel_hp_0');

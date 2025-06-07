@@ -5,7 +5,7 @@ load('HPcolon.mat')
 load('model_final.mat')
 %% 
 hpcolongenes={'254173.1'
-'126792.1'
+'126792.1
 '118424.1'
 '29101.1'
 '142678.1'

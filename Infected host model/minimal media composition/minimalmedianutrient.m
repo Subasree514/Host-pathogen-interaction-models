@@ -1,4 +1,4 @@
-%% mem media nutrients
+%% minimal essential media nutrients
 memmets={'arg_L[e]'
 'Lcystin[e]'
 'his_L[e]'
@@ -104,6 +104,6 @@ eagleconstraints=[0.007854014
 findRxnIDs(model3,eagleexchanges);
 model3.lb(ans)=-1*eagleconstraints;
 optimizeCbModel(model3)
-%%
+%% set the constraint of the ATP demand reaction to the experimental value
 %findRxnIDs(model3,'DM_atp_c_');
 %model3.lb(ans)=1.07;
