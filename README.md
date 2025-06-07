@@ -4,7 +4,7 @@ Codes used to build host-pathogen interaction models based on Recon 3D and Dual 
 2. Sharafutdinov, Irshad, et al. "Early and late genome-wide gastric epithelial transcriptome response during infection with the human carcinogen Helicobacter pylori." _Cell Insight_ 1.3 (2022): 100032.
 
 ## Description of the codes in the following folders
-1. Pathogen GEMs
+### 1. Pathogen GEMs
    Two pathogen genome-scale metabolic models were used in this project. They are _Streptococcus pneumoniae_ D39 and _Helicobacter pylori_. The models were taken from the following sources.
    1. Pedram, Narges, Hamid Rashedi, and Ehsan Motamedian. "A systematic strategy using a reconstructed genome-scale             metabolic network for pathogen Streptococcus pneumoniae D39 to find novel potential drug targets." Pathogens and           Disease 78.6 (2020): ftaa051.
    2. Thiele, Ines, et al. "Expanded metabolic reconstruction of helicobacter pylori (i it341 gsm/gpr): an in silico             genome-scale characterization of single-and double-deletion mutants." Journal of bacteriology 187.16 (2005): 5818-         5830.
@@ -26,10 +26,10 @@ SPmetsmod.m - Update the nomenclature
 [......Host-pathogen-interaction-models/Pathogen GEMs/S pneumoniae/TICs removal/](https://github.com/Subasree514/Host-pathogen-interaction-models/tree/main/Pathogen%20GEMs/S%20pneumoniae/TICs%20removal) <br>
 sp_removetics.m - Remove TICs
 
-3. Infected host model
+### 2. Infected host model
      Following steps were taken to build the infected host models from the CCLE cancer cell line GEMs as both the dual RNA seq experiments were done on the cell lines. The detailed methodology common to both the scenarious is shown in the figure below.
    ![image-url](https://github.com/Subasree514/Host-pathogen-interaction-models/blob/main/hp.png)
-4. HP model building
+### 3. HP model building
       Codes used to reconstruct the host-pathogen interaction models for pneumonia and gastric cancer.
    1. For pneumonia, codes to integrate the RS integrated host and pathogen models along with the inclusion of                   constraints for lunglike media to the pathogen and minimal media to the host are available in [Host-pathogen-               interaction-models/HP model building/H](https://github.com/Subasree514/Host-pathogen-interaction-models/tree/main/HP%20model%20building) in PneumoniaHPmodel.m
    2. For gastric cancer, codes to integrate the RS integrated host and pathogen models along with the inclusion of              minimal media constraints for each of the model are available in [Host-pathogen-interaction-models/HP model                 building/](https://github.com/Subasree514/Host-pathogen-interaction-models/tree/main/HP%20model%20building) in GastriccancerHPmodel.m
