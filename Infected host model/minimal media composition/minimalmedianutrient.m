@@ -100,6 +100,7 @@ eagleconstraints=[0.007854014
 0.981506585
 0.006424926
 1.139885955];
+run memtransports.m
 %%
 findRxnIDs(model3,eagleexchanges);
 model3.lb(ans)=-1*eagleconstraints;

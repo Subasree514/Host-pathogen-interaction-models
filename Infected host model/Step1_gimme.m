@@ -54,6 +54,5 @@ corem1=findRxnIDs(modelHK74final,rxns_add);
 expressionRxns2(corem1)=5;
 tissueModel_hp_0 = GIMME(modelHK74final, expressionRxns2, lowerThs2);
 model3=tissueModel_hp_0;
-minimalmedianutrient.m
 tissueModel_hp_0=model3;
 save('tissueModel_hp_0','tissueModel_hp_0');
