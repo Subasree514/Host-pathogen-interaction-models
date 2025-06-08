@@ -1,6 +1,6 @@
 % RS integrated host model. The same procedure applies to the other infection points host tissue models
-load('model_hp6_rs.mat')
-model1=model_hp6_rs;
+load('model_hp0_rs.mat')
+model1=model_hp0_rs;
 model1 = addExchangeRxn(model1,{'no[e]'
 'lac_L[e]'
 'adn[e]'
@@ -176,5 +176,5 @@ bloodids=findRxnIDs(modelJoint,bloodexchanges);
 modelJoint.lb(bloodids)=-1*bloodbounds;
 optimizeCbModel(modelJoint,'max')
 %%
-modelHP6new=modelJoint;
-save('modelHP6new','modelHP6new');
+modelHP0new=modelJoint;
+save('modelHP0new','modelHP0new');
