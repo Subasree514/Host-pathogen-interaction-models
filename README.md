@@ -30,8 +30,8 @@ sp_removetics.m - Remove TICs
      Following steps were taken to build the infected host models from the CCLE cancer cell line GEMs as both the dual RNA seq experiments were done on the cell lines. The detailed methodology common to both the scenarious is shown in the figure below.
    ![image-url](https://github.com/Subasree514/Host-pathogen-interaction-models/blob/main/hp.png)
 - The first step to reconstruct the two cancer cell line GEMs were same as the one followed in S. Sridhar et al.,_Metabolic Engineering_,2023 (doi.org/10.1016/j.ymben.2023.08.006). The code is available in https://github.com/Subasree514/Building-cancer-specific-genome-scale-models, also given in cancer_cellline_GEMs.m
-- The second step was to map the transcriptomic data of the infected tissues to the cancer cell line GEMs and reconstruct models using GIMME algorithm. The code is available in The GIMME derived models could not be used for flux sampling analysis. So an additional step was also considered. 
-- The final step was to get the core reactions from the GIMME models and use them to reconstruct the infected host tissue GEMs with the modified Recon 3D model through FASTCORE algorithm 
+- The second step was to map the transcriptomic data of the infected tissues to the cancer cell line GEMs and reconstruct models using GIMME algorithm. The code is available in https://github.com/Subasree514/Host-pathogen-interaction-models/blob/main/Infected%20host%20model/Step1_gimme.m. The GIMME derived models could not be used for flux sampling analysis. So an additional step was also considered. 
+- The final step was to get the core reactions from the GIMME models and use them to reconstruct the infected host tissue GEMs with the modified Recon 3D model through FASTCORE algorithm, given in https://github.com/Subasree514/Host-pathogen-interaction-models/blob/main/Infected%20host%20model/Step2_fastcore.m
 
 ### 3. HP model building
       Codes used to reconstruct the host-pathogen interaction models for pneumonia and gastric cancer.
