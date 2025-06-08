@@ -62,7 +62,7 @@ nameTagHost='Gastric_';
 [modelJoint] = createMultipleSpeciesModel(models,'nameTagsModels',nameTagsModels,'modelHost',modelHost,'nameTagHost',nameTagHost);
 
 %% set the bounds of boundary reactions in the common compartment for the host
-modelJoint = changeRxnBounds(modelJoint,modelJoint.rxns(strmatch('Gastric_IEX',modelJoint.rxns)),0,'l');
+modelJoint = changeRxnBounds(modelJoint,modelJoint.rxns(strmatch('Gastric_IEX',modelJoint.rxns)),-1000,'l');
 modelJoint = changeRxnBounds(modelJoint,modelJoint.rxns(strmatch('Gastric_IEX',modelJoint.rxns)),1000,'u');
 
 %% Nutreint uptake for the host and pathogen
